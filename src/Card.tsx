@@ -67,13 +67,6 @@ export function Card({
       >
         <Layer>
           <Rect
-            width={style.canvas.width}
-            height={style.canvas.height}
-            stroke="black"
-            strokeWidth={1}
-          />
-
-          <Rect
             width={style.card.width}
             height={style.card.height}
             x={(style.canvas.width - style.card.width) / 2}
@@ -81,16 +74,17 @@ export function Card({
             fill={style.card.background_color}
             stroke={style.card.border.color}
             strokeWidth={style.card.border.size}
-            cornerRadius={20}
+            cornerRadius={style.card.radius}
+            shadowBlur={style.card.shadow_radius}
+            shadowColor="black"
           />
-
           <Text
             text={name}
             fontFamily="Barlow Condensed"
             fontSize={style.name.size}
             fontStyle="bold"
             x={style.name.left}
-            y={style.name.top} // - style.name.size}
+            y={style.name.top}
             align="left"
             width={style.name.width}
             height={style.name.height}
@@ -102,13 +96,12 @@ export function Card({
             fontFamily="Barlow Condensed"
             fontSize={style.age.size}
             x={style.age.left}
-            y={style.age.top} // - style.age.size}
+            y={style.age.top}
             align="right"
             width={style.age.width}
             height={style.age.height}
             verticalAlign="bottom"
           />
-
           <Image
             image={flagImg}
             x={style.flag.left}
@@ -116,7 +109,6 @@ export function Card({
             width={style.flag.width}
             height={style.flag.height}
           />
-
           <ProfilePicture
             image={image}
             style={style}
@@ -147,7 +139,6 @@ export function Card({
             height={style.endurance.height}
             verticalAlign="bottom"
           />
-
           <Text
             text="Grimpeur:"
             x={style.climb.left}
@@ -172,7 +163,6 @@ export function Card({
             height={style.climb.height}
             verticalAlign="bottom"
           />
-
           <Text
             text="Hors piste:"
             x={style.offroad.left}
@@ -222,7 +212,6 @@ export function Card({
             height={style.days.height}
             verticalAlign="bottom"
           />
-
           {[...Array(Math.floor(stars)).keys()].map((i) => (
             <Image
               key={i}
