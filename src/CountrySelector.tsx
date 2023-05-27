@@ -87,7 +87,8 @@ export default function CountrySelector({
           <span className="truncate flex items-center">
             <img
               alt={`${selectedValue.value}`}
-              src={`https://purecatamphetamine.github.io/country-flag-icons/3x2/${selectedValue.value}.svg`}
+              src={`https://flagcdn.com/h40/${selectedValue.value.toLowerCase()}.png`}
+              // `https://purecatamphetamine.github.io/country-flag-icons/3x2/${selectedValue.value}.svg`}
               className={"inline mr-2 h-4 rounded-sm"}
             />
             {selectedValue.title}

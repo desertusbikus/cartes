@@ -36,8 +36,13 @@ export function Card({
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
 
   const [flagImg] = useImage(
-    `https://purecatamphetamine.github.io/country-flag-icons/3x2/${flag}.svg`,
+    `https://flagcdn.com/h40/${flag.toLowerCase()}.png`,
+    // `https://flagicons.lipis.dev/flags/4x3/${flag.toLowerCase()}.svg`,
     "anonymous"
+  );
+
+  const [flagImg2, setFlagImg2] = useState<HTMLImageElement | undefined>(
+    undefined
   );
 
   const [starImg] = useImage(star);
