@@ -1,5 +1,3 @@
-import { CropInput } from "../crop_utils/props";
-
 export type TextElement = {
   top: number;
   left: number;
@@ -85,10 +83,4 @@ export type Card = {
     width: number;
     height: number;
   };
-};
-
-export type Crop = CropInput & {
-  x: number;
-  y: number;
-  scale: number;
 };
