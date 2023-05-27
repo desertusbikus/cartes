@@ -12,7 +12,6 @@ const card_height = 492;
 const card_left = (canvas.width - card_width) / 2;
 const card_top = (canvas.height - card_height) / 2;
 const card_inner_width = card_width - padding * 2;
-const card_inner_height = card_height - padding * 2;
 const card_bottom = card_top + card_height;
 //
 const left = card_left + padding;
