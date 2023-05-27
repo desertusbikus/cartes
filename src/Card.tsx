@@ -41,10 +41,6 @@ export function Card({
     "anonymous"
   );
 
-  const [flagImg2, setFlagImg2] = useState<HTMLImageElement | undefined>(
-    undefined
-  );
-
   const [starImg] = useImage(star);
 
   useEffect(() => {
