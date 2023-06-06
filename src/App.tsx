@@ -4,13 +4,11 @@ import "./App.css";
 import Dropzone, { FilePreview } from "./Dropzone";
 import { useState } from "react";
 
-import { racerStyle } from "./card_utils/styles";
+import { StyleName, SubstyleName, styles } from "./card_utils/styles";
 import { Card } from "./Card";
 import { Form } from "./Form";
 
 function App() {
-  const style = racerStyle;
-
   const [flag, setFlag] = useState("FR");
   const [name, setName] = useState("Gui Dondevélo");
   const [age, setAge] = useState(42);
@@ -19,6 +17,11 @@ function App() {
   const [climb, setClimb] = useState(20);
   const [days, setDays] = useState(3);
   const [stars, setStars] = useState(3);
+  const [style, setStyle] = useState("Desertus");
+  const [substyle, setSubstyle] = useState("Racer");
+  const [fontPercent, setFontPercent] = useState(100);
+  const [nickname, setNickname] = useState("Guitoune");
+  const [role, setRole] = useState("Glandeur");
 
   const [image, setImage] = useState<string>(user);
 
@@ -66,13 +69,23 @@ function App() {
             setDays={setDays}
             stars={stars}
             setStars={setStars}
+            style={style}
+            setStyle={setStyle}
+            setSubstyle={setSubstyle}
+            fontPercent={fontPercent}
+            setFontPercent={setFontPercent}
+            substyle={substyle}
+            nickname={nickname}
+            setNickname={setNickname}
+            role={role}
+            setRole={setRole}
           />
         </div>
 
         {/* Card preview */}
         <div className="col-span-1 m-4">
           <Card
-            style={style}
+            style={styles[style as StyleName][substyle as SubstyleName]}
             flag={flag}
             name={name}
             age={age}
@@ -82,6 +95,9 @@ function App() {
             days={days}
             stars={stars}
             image={image}
+            fontPercent={fontPercent}
+            nickname={nickname}
+            role={role}
           />
         </div>
 

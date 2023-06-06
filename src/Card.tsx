@@ -4,6 +4,8 @@ import { ProfilePicture } from "./ProfilePicture";
 import { useEffect, useRef, useState } from "react";
 import useImage from "use-image";
 import star from "./assets/star.png";
+import starnomad from "./assets/starnomad.png";
+
 import Konva from "konva";
 
 type CardProps = {
@@ -18,6 +20,9 @@ type CardProps = {
   days: number;
   stars: number;
   image: string;
+  fontPercent: number;
+  nickname: string;
+  role: string;
 };
 
 export function Card({
@@ -31,6 +36,9 @@ export function Card({
   climb,
   days,
   stars,
+  fontPercent,
+  nickname,
+  role,
 }: CardProps) {
   const stageRef = useRef<Konva.Stage>(null);
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
@@ -42,6 +50,7 @@ export function Card({
   );
 
   const [starImg] = useImage(star);
+  const [starnomadImg] = useImage(starnomad);
 
   useEffect(() => {
     setImagePosition({
@@ -80,29 +89,33 @@ export function Card({
             shadowColor="black"
           />
           <Text
-            text={name}
-            fontFamily="Barlow Condensed"
-            fontSize={style.name.size}
-            fontStyle="bold"
+            text={style.substyle === "Racer" ? name : role}
+            fontFamily={style.card.font}
+            fontSize={style.name.size * (fontPercent / 100)}
+            fontStyle={style.card.font_style}
             x={style.name.left}
             y={style.name.top}
+            fill={style.card.font_color}
             align="left"
             width={style.name.width}
             height={style.name.height}
             verticalAlign="bottom"
           />
 
-          <Text
-            text={`${age} ans`}
-            fontFamily="Barlow Condensed"
-            fontSize={style.age.size}
-            x={style.age.left}
-            y={style.age.top}
-            align="right"
-            width={style.age.width}
-            height={style.age.height}
-            verticalAlign="bottom"
-          />
+          {style.substyle === "Racer" && (
+            <Text
+              text={`${age} ans`}
+              fontFamily={style.card.font}
+              fontSize={style.age.size * (fontPercent / 100)}
+              x={style.age.left}
+              y={style.age.top}
+              fill={style.card.font_color}
+              align="right"
+              width={style.age.width}
+              height={style.age.height}
+              verticalAlign="bottom"
+            />
+          )}
           <Image
             image={flagImg}
             x={style.flag.left}
@@ -116,143 +129,193 @@ export function Card({
             position={imagePosition}
           />
 
-          <Text
-            text="Endurance:"
-            x={style.endurance.left}
-            y={style.endurance.top}
-            fontFamily="Barlow Condensed"
-            fontSize={style.endurance.size}
-            fontStyle="bold"
-            align="left"
-            width={style.endurance.width}
-            height={style.endurance.height}
-            verticalAlign="bottom"
-          />
-          <Text
-            text={`${endurance} %`}
-            x={style.stats_left_align}
-            y={style.endurance.top}
-            fontFamily="Barlow Condensed"
-            fontSize={style.endurance.size}
-            fontStyle="bold"
-            align="left"
-            width={style.endurance.width}
-            height={style.endurance.height}
-            verticalAlign="bottom"
-          />
-          <Text
-            text="Grimpeur:"
-            x={style.climb.left}
-            y={style.climb.top}
-            fontFamily="Barlow Condensed"
-            fontSize={style.climb.size}
-            fontStyle="bold"
-            align="left"
-            width={style.climb.width}
-            height={style.climb.height}
-            verticalAlign="bottom"
-          />
-          <Text
-            text={`${climb} %`}
-            x={style.stats_left_align}
-            y={style.climb.top}
-            fontFamily="Barlow Condensed"
-            fontSize={style.climb.size}
-            fontStyle="bold"
-            align="left"
-            width={style.climb.width}
-            height={style.climb.height}
-            verticalAlign="bottom"
-          />
-          <Text
-            text="Hors piste:"
-            x={style.offroad.left}
-            y={style.offroad.top}
-            fontFamily="Barlow Condensed"
-            fontSize={style.offroad.size}
-            fontStyle="bold"
-            align="left"
-            width={style.offroad.width}
-            height={style.offroad.height}
-            verticalAlign="bottom"
-          />
-          <Text
-            text={`${offroad} %`}
-            x={style.stats_left_align}
-            y={style.offroad.top}
-            fontFamily="Barlow Condensed"
-            fontSize={style.offroad.size}
-            fontStyle="bold"
-            align="left"
-            width={style.offroad.width}
-            height={style.offroad.height}
-            verticalAlign="bottom"
-          />
-
-          <Text
-            text="Objectif:"
-            x={style.days.left}
-            y={style.days.top}
-            fontFamily="Barlow Condensed"
-            fontSize={style.days.size}
-            fontStyle="bold"
-            align="left"
-            width={style.days.width}
-            height={style.days.height}
-            verticalAlign="bottom"
-          />
-          <Text
-            text={`${days} jours`}
-            x={style.days.left}
-            y={style.days.top}
-            fontFamily="Barlow Condensed"
-            fontSize={style.days.size}
-            fontStyle="bold"
-            align="right"
-            width={style.days.width}
-            height={style.days.height}
-            verticalAlign="bottom"
-          />
-          {[...Array(Math.floor(stars)).keys()].map((i) => (
-            <Image
-              key={i}
-              image={starImg}
-              x={style.stars.left + i * style.stars.width + i * style.stars.gap}
-              y={style.stars.top}
-              width={style.stars.width}
-              height={style.stars.height}
-            />
-          ))}
-          {stars - Math.floor(stars) > 0 && (
-            <Group
-              clipX={
-                style.stars.left +
-                Math.floor(stars) * style.stars.height +
-                Math.floor(stars) * style.stars.gap
-              }
-              clipY={style.stars.top}
-              clipWidth={style.stars.width * (stars - Math.floor(stars))}
-              clipHeight={style.stars.height}
-            >
-              <Image
-                image={starImg}
-                x={
-                  style.stars.left +
-                  Math.floor(stars) * style.stars.height +
-                  Math.floor(stars) * style.stars.gap
-                }
-                y={style.stars.top}
-                width={style.stars.width}
-                height={style.stars.height}
+          {style.substyle === "Racer" && (
+            <>
+              <Text
+                text="Endurance:"
+                x={style.endurance.left}
+                y={style.endurance.top}
+                fontFamily={style.card.alternative_font}
+                fontSize={style.endurance.size}
+                fontStyle={style.card.alternative_font_style}
+                fill={style.card.font_color}
+                align="left"
+                width={style.endurance.width}
+                height={style.endurance.height}
+                verticalAlign="bottom"
               />
-            </Group>
+              <Text
+                text={`${endurance} %`}
+                x={style.stats_left_align}
+                y={style.endurance.top}
+                fontFamily={style.card.alternative_font}
+                fontSize={style.endurance.size}
+                fontStyle={style.card.alternative_font_style}
+                fill={style.card.font_color}
+                align="left"
+                width={style.endurance.width}
+                height={style.endurance.height}
+                verticalAlign="bottom"
+              />
+              <Text
+                text="Grimpeur:"
+                x={style.climb.left}
+                y={style.climb.top}
+                fontFamily={style.card.alternative_font}
+                fontSize={style.climb.size}
+                fontStyle={style.card.alternative_font_style}
+                fill={style.card.font_color}
+                align="left"
+                width={style.climb.width}
+                height={style.climb.height}
+                verticalAlign="bottom"
+              />
+              <Text
+                text={`${climb} %`}
+                x={style.stats_left_align}
+                y={style.climb.top}
+                fontFamily={style.card.alternative_font}
+                fontSize={style.climb.size}
+                fontStyle={style.card.alternative_font_style}
+                fill={style.card.font_color}
+                align="left"
+                width={style.climb.width}
+                height={style.climb.height}
+                verticalAlign="bottom"
+              />
+              <Text
+                text="Hors piste:"
+                x={style.offroad.left}
+                y={style.offroad.top}
+                fontFamily={style.card.alternative_font}
+                fontSize={style.offroad.size}
+                fontStyle={style.card.alternative_font_style}
+                fill={style.card.font_color}
+                align="left"
+                width={style.offroad.width}
+                height={style.offroad.height}
+                verticalAlign="bottom"
+              />
+              <Text
+                text={`${offroad} %`}
+                x={style.stats_left_align}
+                y={style.offroad.top}
+                fontFamily={style.card.alternative_font}
+                fontSize={style.offroad.size}
+                fontStyle={style.card.alternative_font_style}
+                fill={style.card.font_color}
+                align="left"
+                width={style.offroad.width}
+                height={style.offroad.height}
+                verticalAlign="bottom"
+              />
+
+              <Text
+                text="Objectif:"
+                x={style.days.left}
+                y={style.days.top}
+                fontFamily={style.card.alternative_font}
+                fontSize={style.days.size}
+                fontStyle={style.card.alternative_font_style}
+                fill={style.card.font_color}
+                align="left"
+                width={style.days.width}
+                height={style.days.height}
+                verticalAlign="bottom"
+              />
+              <Text
+                text={`${days} jours`}
+                x={style.days.left}
+                y={style.days.top}
+                fontFamily={style.card.alternative_font}
+                fontSize={style.days.size}
+                fontStyle={style.card.alternative_font_style}
+                fill={style.card.font_color}
+                align="right"
+                width={style.days.width}
+                height={style.days.height}
+                verticalAlign="bottom"
+              />
+              {[...Array(Math.floor(stars)).keys()].map((i) => (
+                <Image
+                  key={i}
+                  image={style.style === "Desertus" ? starImg : starnomadImg}
+                  x={
+                    style.stars.left +
+                    i * style.stars.width +
+                    i * style.stars.gap
+                  }
+                  y={style.stars.top}
+                  width={style.stars.width}
+                  height={style.stars.height}
+                />
+              ))}
+              {stars - Math.floor(stars) > 0 && (
+                <Group
+                  clipX={
+                    style.stars.left +
+                    Math.floor(stars) * style.stars.height +
+                    Math.floor(stars) * style.stars.gap
+                  }
+                  clipY={style.stars.top}
+                  clipWidth={style.stars.width * (stars - Math.floor(stars))}
+                  clipHeight={style.stars.height}
+                >
+                  <Image
+                    image={style.style === "Desertus" ? starImg : starnomadImg}
+                    x={
+                      style.stars.left +
+                      Math.floor(stars) * style.stars.height +
+                      Math.floor(stars) * style.stars.gap
+                    }
+                    y={style.stars.top}
+                    width={style.stars.width}
+                    height={style.stars.height}
+                  />
+                </Group>
+              )}
+            </>
+          )}
+          {style.substyle === "Staff" && (
+            <>
+              {/* <Rect
+                x={style.staffNick.left}
+                y={style.staffNick.top} */}
+
+              <Text
+                text={'"' + nickname + '"'}
+                fontFamily={style.card.font}
+                fontSize={style.staffNick.size * (fontPercent / 100)}
+                fontStyle={style.card.font_style}
+                x={style.staffNick.left}
+                y={style.staffNick.top}
+                fill={style.card.font_color}
+                align="center"
+                width={style.staffNick.width}
+                height={style.staffNick.height}
+                verticalAlign="bottom"
+              />
+              <Text
+                text={name}
+                fontFamily={style.card.font}
+                fontSize={style.staffName.size * (fontPercent / 100)}
+                fontStyle={style.card.font_style}
+                x={style.staffName.left}
+                y={style.staffName.top}
+                fill={style.card.font_color}
+                align="center"
+                width={style.staffName.width}
+                height={style.staffName.height}
+                verticalAlign="bottom"
+              />
+            </>
           )}
         </Layer>
       </Stage>
 
       <div className="my-4">
         <button
-          className="bg-desert  font-bold py-2 px-4  w-full"
+          className="bg-desert font-bold py-2 px-4  w-full"
           onClick={() => {
             if (!stageRef.current) return;
             const stage = stageRef.current;

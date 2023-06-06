@@ -7,6 +7,9 @@ export type TextElement = {
 };
 
 export type Style = {
+  style: string;
+  substyle: string;
+
   canvas: {
     width: number;
     height: number;
@@ -18,6 +21,12 @@ export type Style = {
     radius: number;
 
     background_color: string;
+    font: string;
+    font_color: string;
+    font_style: string;
+    alternative_font: string;
+    alternative_font_color: string;
+    alternative_font_style: string;
 
     border: {
       color: string;
@@ -60,6 +69,10 @@ export type Style = {
     width: number;
     gap: number;
   };
+
+  // Staff
+  staffNick: TextElement;
+  staffName: TextElement;
 };
 
 export type Card = {

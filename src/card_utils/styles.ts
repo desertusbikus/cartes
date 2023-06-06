@@ -43,10 +43,19 @@ const star_gap = 8;
 const star_dim = (bottom_column_width - 2 * star_gap) / 3;
 
 const baseStyle: Style = {
+  style: "Base",
+  substyle: "Base",
+  //
   canvas: canvas,
   //
   card: {
     background_color: "#fff",
+    font: "Barlow Condensed",
+    font_color: "#000",
+    font_style: "bold",
+    alternative_font: "Barlow Condensed",
+    alternative_font_color: "#000",
+    alternative_font_style: "bold",
     width: card_width,
     height: card_height,
     radius: 20,
@@ -58,7 +67,7 @@ const baseStyle: Style = {
   },
   //
   name: {
-    size: 30,
+    size: 28,
     top: top_row,
     left: left,
     width: name_width,
@@ -126,14 +135,81 @@ const baseStyle: Style = {
     height: star_dim,
     gap: star_gap,
   },
+
+  staffNick: {
+    top: bottom_section_top + 4,
+    left: left,
+    width: card_inner_width,
+    height: 32,
+    size: 32,
+  },
+  staffName: {
+    top: bottom_section_top + 36,
+    left: left,
+    width: card_inner_width,
+    height: 32,
+    size: 24,
+  },
 };
 
-export const racerStyle = {
+export const desertusStyle = {
   ...baseStyle,
+  style: "Desertus",
+  substyle: "Racer",
   card: {
     ...baseStyle.card,
     background_color: "rgb(245, 191, 33)",
   },
 };
 
-console.log(racerStyle);
+export const desertusStaffStyle = {
+  ...baseStyle,
+  style: "DesertusStaff",
+  substyle: "Staff",
+  card: {
+    ...baseStyle.card,
+    background_color: "#fff",
+  },
+};
+
+export const nomadianStyle = {
+  ...baseStyle,
+  style: "Nomadian",
+  substyle: "Racer",
+  card: {
+    ...baseStyle.card,
+    background_color: "rgb(0, 0, 0)",
+    font_style: "normal",
+
+    font: "Chaumont",
+    font_color: "#d19356",
+
+    alternative_font: "Barlow Condensed",
+    alternative_font_color: "#d19356",
+    alternative_font_style: "bold",
+  },
+};
+
+export const nomadianStaffStyle = {
+  ...nomadianStyle,
+  style: "Nomadian",
+  substyle: "Staff",
+  card: {
+    ...nomadianStyle.card,
+    font_color: "#fff",
+    background_color: "rgb(0, 0, 0)",
+  },
+};
+
+export const styles = {
+  Desertus: {
+    Racer: desertusStyle,
+    Staff: desertusStaffStyle,
+  },
+  Nomadian: {
+    Racer: nomadianStyle,
+    Staff: nomadianStaffStyle,
+  },
+};
+export type StyleName = keyof typeof styles;
+export type SubstyleName = keyof (typeof styles)[StyleName];
