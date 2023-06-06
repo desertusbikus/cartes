@@ -256,12 +256,9 @@ export function Card({
           onClick={() => {
             if (!stageRef.current) return;
             const stage = stageRef.current;
-
-            console.log(stage.toDataURL());
-
             const link = document.createElement("a");
             link.download = `${name}.png`;
-            link.href = stage.toDataURL();
+            link.href = stage.toDataURL({ pixelRatio: 300 / 72 });
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
