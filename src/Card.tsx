@@ -52,6 +52,11 @@ export function Card({
   const [starImg] = useImage(star);
   const [starnomadImg] = useImage(starnomad);
 
+  const up = (text: string) => {
+    if (style.style === "Desertus") return text;
+    return text.toUpperCase();
+  };
+
   useEffect(() => {
     setImagePosition({
       x:
@@ -89,7 +94,7 @@ export function Card({
             shadowColor="black"
           />
           <Text
-            text={style.substyle === "Racer" ? name : role}
+            text={up(style.substyle === "Racer" ? name : role)}
             fontFamily={style.card.font}
             fontSize={style.name.size * (fontPercent / 100)}
             fontStyle={style.card.font_style}
@@ -132,7 +137,7 @@ export function Card({
           {style.substyle === "Racer" && (
             <>
               <Text
-                text="Endurance:"
+                text={up("Endurance:")}
                 x={style.endurance.left}
                 y={style.endurance.top}
                 fontFamily={style.card.alternative_font}
@@ -158,7 +163,7 @@ export function Card({
                 verticalAlign="bottom"
               />
               <Text
-                text="Grimpeur:"
+                text={up("Grimpeur:")}
                 x={style.climb.left}
                 y={style.climb.top}
                 fontFamily={style.card.alternative_font}
@@ -184,7 +189,7 @@ export function Card({
                 verticalAlign="bottom"
               />
               <Text
-                text="Hors piste:"
+                text={up("Hors piste:")}
                 x={style.offroad.left}
                 y={style.offroad.top}
                 fontFamily={style.card.alternative_font}
@@ -211,7 +216,7 @@ export function Card({
               />
 
               <Text
-                text="Objectif:"
+                text={up("Objectif:")}
                 x={style.days.left}
                 y={style.days.top}
                 fontFamily={style.card.alternative_font}
@@ -224,7 +229,7 @@ export function Card({
                 verticalAlign="bottom"
               />
               <Text
-                text={`${days} jours`}
+                text={up(`${days} jours`)}
                 x={style.days.left}
                 y={style.days.top}
                 fontFamily={style.card.alternative_font}
