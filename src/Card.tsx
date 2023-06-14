@@ -82,6 +82,13 @@ export function Card({
       >
         <Layer>
           <Rect
+            width={style.canvas.width}
+            height={style.canvas.height}
+            x={0}
+            y={0}
+            fill="#ffffff"
+          />
+          <Rect
             width={style.card.width}
             height={style.card.height}
             x={(style.canvas.width - style.card.width) / 2}
