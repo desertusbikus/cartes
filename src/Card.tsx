@@ -170,7 +170,7 @@ export function Card({
                 verticalAlign="bottom"
               />
               <Text
-                text={up("Grimpeur:")}
+                text={up("Grimpe:")}
                 x={style.climb.left}
                 y={style.climb.top}
                 fontFamily={style.card.alternative_font}
