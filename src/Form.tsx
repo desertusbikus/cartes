@@ -148,7 +148,7 @@ export function Form({
           </label>
 
           <label className={formWrapperClasses}>
-            <span className={formLabelClasses}>Grimpeur</span>
+            <span className={formLabelClasses}>Grimpe</span>
             <input
               type="number"
               className={formInputClasses}
