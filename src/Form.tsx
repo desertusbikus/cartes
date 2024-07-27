@@ -72,6 +72,7 @@ export function Form({
         >
           <option value="Desertus">Desertus</option>
           <option value="Nomadian">Nomadian</option>
+          <option value="Road66">Road 66</option>
         </select>
       </label>
 

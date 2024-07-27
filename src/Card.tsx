@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import useImage from "use-image";
 import star from "./assets/star.png";
 import starnomad from "./assets/starnomad.png";
+import star66 from "./assets/star66.png";
 
 import Konva from "konva";
 
@@ -51,6 +52,7 @@ export function Card({
 
   const [starImg] = useImage(star);
   const [starnomadImg] = useImage(starnomad);
+  const [star66img] = useImage(star66);
 
   const up = (text: string) => {
     if (style.style === "Desertus") return text;
@@ -251,7 +253,7 @@ export function Card({
               {[...Array(Math.floor(stars)).keys()].map((i) => (
                 <Image
                   key={i}
-                  image={style.style === "Desertus" ? starImg : starnomadImg}
+                  image={style.style === "Desertus" ? starImg : (style.style === 'Nomadian' ? starnomadImg : star66img)}
                   x={
                     style.stars.left +
                     i * style.stars.width +
@@ -274,7 +276,7 @@ export function Card({
                   clipHeight={style.stars.height}
                 >
                   <Image
-                    image={style.style === "Desertus" ? starImg : starnomadImg}
+                    image={style.style === "Desertus" ? starImg : (style.style === 'Nomadian' ? starnomadImg : star66img)}
                     x={
                       style.stars.left +
                       Math.floor(stars) * style.stars.height +

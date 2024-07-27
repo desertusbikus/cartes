@@ -201,6 +201,31 @@ export const nomadianStaffStyle = {
   },
 };
 
+export const r66Style = {
+  ...baseStyle,
+  style: "Road66",
+  substyle: "Racer",
+  card: {
+    ...baseStyle.card,
+    background_color: "#3a4c58",
+    border: {
+      color: "#e3a629",
+      size: 10,
+    },
+    font_color: '#fff',
+  },
+};
+
+export const r66StaffStyle = {
+  ...baseStyle,
+  style: "Road66Staff",
+  substyle: "Staff",
+  card: {
+    ...baseStyle.card,
+    background_color: "#fff",
+  },
+};
+
 export const styles = {
   Desertus: {
     Racer: desertusStyle,
@@ -210,6 +235,10 @@ export const styles = {
     Racer: nomadianStyle,
     Staff: nomadianStaffStyle,
   },
+  Road66: {
+    Racer: r66Style,
+    Staff: r66StaffStyle
+  }
 };
 export type StyleName = keyof typeof styles;
 export type SubstyleName = keyof (typeof styles)[StyleName];
