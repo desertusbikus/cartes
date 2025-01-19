@@ -255,7 +255,7 @@ export const CosmosStyle = {
   },
   days: {
     ...baseStyle.days,
-    size: 16,
+    size: 15,
   },
 };
 
