@@ -260,7 +260,7 @@ export function Card({
               <Text
                 text={
                   style.style === "Cosmos"
-                    ? up(`Antennes`)
+                    ? up(`${days} Antennes`)
                     : up(`${days} jours`)
                 }
                 x={style.days.left}
