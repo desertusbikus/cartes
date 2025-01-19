@@ -258,7 +258,11 @@ export function Card({
                 verticalAlign="bottom"
               />
               <Text
-                text={up(`${days} jours`)}
+                text={
+                  style.style === "Cosmos"
+                    ? up(`Antennes`)
+                    : up(`${days} jours`)
+                }
                 x={style.days.left}
                 y={style.days.top}
                 fontFamily={style.card.alternative_font}

@@ -253,6 +253,10 @@ export const CosmosStyle = {
     left: left + 150 + 16,
     size: 16,
   },
+  days: {
+    ...baseStyle.days,
+    size: 16,
+  },
 };
 
 export const CosmosStaffStyle = {
