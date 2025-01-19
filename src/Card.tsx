@@ -1,11 +1,13 @@
-import { Stage, Layer, Rect, Text, Image, Group } from "react-konva";
-import { Style } from "./card_utils/types";
-import { ProfilePicture } from "./ProfilePicture";
 import { useEffect, useRef, useState } from "react";
+import { Group, Image, Layer, Rect, Stage, Text } from "react-konva";
 import useImage from "use-image";
 import star from "./assets/star.png";
-import starnomad from "./assets/starnomad.png";
 import star66 from "./assets/star66.png";
+import starcosmos from "./assets/starcosmos.png";
+import starnomad from "./assets/starnomad.png";
+
+import { Style } from "./card_utils/types";
+import { ProfilePicture } from "./ProfilePicture";
 
 import Konva from "konva";
 
@@ -53,6 +55,9 @@ export function Card({
   const [starImg] = useImage(star);
   const [starnomadImg] = useImage(starnomad);
   const [star66img] = useImage(star66);
+  const [starcosmosImg] = useImage(starcosmos);
+
+  const [bgImage] = useImage(style.card.background_image || "", "anonymous");
 
   const up = (text: string) => {
     if (style.style === "Desertus") return text;
@@ -102,6 +107,21 @@ export function Card({
             shadowBlur={style.card.shadow_radius}
             shadowColor="black"
           />
+          {bgImage && (
+            <Image
+              image={bgImage}
+              width={style.card.width}
+              height={style.card.height}
+              x={(style.canvas.width - style.card.width) / 2}
+              y={(style.canvas.height - style.card.height) / 2}
+              // fill={style.card.background_color}
+              // stroke={style.card.border.color}
+              // strokeWidth={style.card.border.size}
+              cornerRadius={style.card.radius}
+              // shadowBlur={style.card.shadow_radius}
+              // shadowColor="black"
+            />
+          )}
           <Text
             text={up(style.substyle === "Racer" ? name : role)}
             fontFamily={style.card.font}
@@ -253,7 +273,15 @@ export function Card({
               {[...Array(Math.floor(stars)).keys()].map((i) => (
                 <Image
                   key={i}
-                  image={style.style === "Desertus" ? starImg : (style.style === 'Nomadian' ? starnomadImg : star66img)}
+                  image={
+                    style.style === "Desertus"
+                      ? starImg
+                      : style.style === "Nomadian"
+                      ? starnomadImg
+                      : style.style === "Road66"
+                      ? star66img
+                      : starcosmosImg
+                  }
                   x={
                     style.stars.left +
                     i * style.stars.width +
@@ -276,7 +304,15 @@ export function Card({
                   clipHeight={style.stars.height}
                 >
                   <Image
-                    image={style.style === "Desertus" ? starImg : (style.style === 'Nomadian' ? starnomadImg : star66img)}
+                    image={
+                      style.style === "Desertus"
+                        ? starImg
+                        : style.style === "Nomadian"
+                        ? starnomadImg
+                        : style.style === "Road66"
+                        ? star66img
+                        : starcosmosImg
+                    }
                     x={
                       style.stars.left +
                       Math.floor(stars) * style.stars.height +

@@ -8,6 +8,11 @@
   src: url(assets/Chaumont.woff2);
 }
 
+@font-face {
+  font-family: "Nasa";
+  src: url(assets/Nasa.ttf);
+}
+
 /* Inherit tailwind css for <html> and <body> */
 html {
   @apply h-full bg-gray-100;

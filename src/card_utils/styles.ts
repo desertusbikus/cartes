@@ -1,3 +1,4 @@
+import cosmos from "../assets/cosmos.png";
 import { Style } from "./types";
 
 const canvas = {
@@ -50,6 +51,7 @@ const baseStyle: Style = {
   //
   card: {
     background_color: "#fff",
+    background_image: null,
     font: "Barlow Condensed",
     font_color: "#000",
     font_style: "bold",
@@ -212,13 +214,50 @@ export const r66Style = {
       color: "#e3a629",
       size: 10,
     },
-    font_color: '#fff',
+    font_color: "#fff",
   },
 };
 
 export const r66StaffStyle = {
   ...baseStyle,
   style: "Road66Staff",
+  substyle: "Staff",
+  card: {
+    ...baseStyle.card,
+    background_color: "#fff",
+  },
+};
+
+export const CosmosStyle = {
+  ...baseStyle,
+  style: "Cosmos",
+  substyle: "Racer",
+  card: {
+    ...baseStyle.card,
+    background_color: "#000",
+    background_image: cosmos,
+    font_color: "#fecc20",
+    font: "Nasa",
+  },
+  name: {
+    // width: 300,
+    // size: 32,
+    ...baseStyle.name,
+    width: 200,
+    size: 22,
+  },
+  age: {
+    ...baseStyle.age,
+    // width: 100,
+    width: 80,
+    left: left + 150 + 16,
+    size: 16,
+  },
+};
+
+export const CosmosStaffStyle = {
+  ...baseStyle,
+  style: "CosmosStaff",
   substyle: "Staff",
   card: {
     ...baseStyle.card,
@@ -237,8 +276,12 @@ export const styles = {
   },
   Road66: {
     Racer: r66Style,
-    Staff: r66StaffStyle
-  }
+    Staff: r66StaffStyle,
+  },
+  Cosmos: {
+    Racer: CosmosStyle,
+    Staff: CosmosStaffStyle,
+  },
 };
 export type StyleName = keyof typeof styles;
 export type SubstyleName = keyof (typeof styles)[StyleName];

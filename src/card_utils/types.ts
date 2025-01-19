@@ -21,6 +21,7 @@ export type Style = {
     radius: number;
 
     background_color: string;
+    background_image: string | null;
     font: string;
     font_color: string;
     font_style: string;
