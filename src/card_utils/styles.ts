@@ -1,4 +1,5 @@
 import cosmos from "../assets/cosmos.png";
+
 import { Style } from "./types";
 
 const canvas = {
@@ -269,6 +270,61 @@ export const CosmosStaffStyle = {
   },
 };
 
+export const Z64Style = {
+  ...baseStyle,
+  style: "Z64",
+  substyle: "Racer",
+  card: {
+    ...baseStyle.card,
+    background_color: "#39ff14",
+    // background_image: z64,
+    font_color: "#000000",
+    font: "Nasa",
+  },
+  stats_left_align: 230,
+
+  name: {
+    // width: 300,
+    // size: 32,
+    ...baseStyle.name,
+    width: 200,
+    size: 22,
+  },
+  age: {
+    ...baseStyle.age,
+    // width: 100,
+    width: 80,
+    left: left + 150 + 16,
+    size: 16,
+  },
+  endurance: {
+    ...baseStyle.endurance,
+    size: 12,
+  },
+  climb: {
+    ...baseStyle.climb,
+    size: 12,
+  },
+  offroad: {
+    ...baseStyle.offroad,
+    size: 10,
+  },
+  days: {
+    ...baseStyle.days,
+    size: 11,
+  },
+};
+
+export const Z64StaffStyle = {
+  ...baseStyle,
+  style: "Z64Staff",
+  substyle: "Staff",
+  card: {
+    ...baseStyle.card,
+    background_color: "#fff",
+  },
+};
+
 export const styles = {
   Desertus: {
     Racer: desertusStyle,
@@ -285,6 +341,10 @@ export const styles = {
   Cosmos: {
     Racer: CosmosStyle,
     Staff: CosmosStaffStyle,
+  },
+  Z64: {
+    Racer: Z64Style,
+    Staff: Z64StaffStyle,
   },
 };
 export type StyleName = keyof typeof styles;

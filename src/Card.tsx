@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Group, Image, Layer, Rect, Stage, Text } from "react-konva";
 import useImage from "use-image";
 import star from "./assets/star.png";
+import star64 from "./assets/star64.png";
 import star66 from "./assets/star66.png";
 import starcosmos from "./assets/starcosmos.png";
 import starnomad from "./assets/starnomad.png";
@@ -56,6 +57,7 @@ export function Card({
   const [starnomadImg] = useImage(starnomad);
   const [star66img] = useImage(star66);
   const [starcosmosImg] = useImage(starcosmos);
+  const [star64img] = useImage(star64);
 
   const [bgImage] = useImage(style.card.background_image || "", "anonymous");
 
@@ -166,7 +168,7 @@ export function Card({
           {style.substyle === "Racer" && (
             <>
               <Text
-                text={up("Endurance:")}
+                text={up(style.style == "Z64" ? "🪫 Plasma" : "Endurance:")}
                 x={style.endurance.left}
                 y={style.endurance.top}
                 fontFamily={style.card.alternative_font}
@@ -192,7 +194,9 @@ export function Card({
                 verticalAlign="bottom"
               />
               <Text
-                text={up("Grimpe:")}
+                text={up(
+                  style.style == "Z64" ? "🛸 Boost Vertical" : "Grimpe:"
+                )}
                 x={style.climb.left}
                 y={style.climb.top}
                 fontFamily={style.card.alternative_font}
@@ -218,7 +222,11 @@ export function Card({
                 verticalAlign="bottom"
               />
               <Text
-                text={up("Hors piste:")}
+                text={up(
+                  style.style == "Z64"
+                    ? "🌌 Parcours Interstellaire:"
+                    : "Hors piste:"
+                )}
                 x={style.offroad.left}
                 y={style.offroad.top}
                 fontFamily={style.card.alternative_font}
@@ -245,7 +253,9 @@ export function Card({
               />
 
               <Text
-                text={up("Objectif:")}
+                text={up(
+                  style.style == "Z64" ? "🛰️ Durée d'orbite:" : "Objectif:"
+                )}
                 x={style.days.left}
                 y={style.days.top}
                 fontFamily={style.card.alternative_font}
@@ -258,11 +268,12 @@ export function Card({
                 verticalAlign="bottom"
               />
               <Text
-                text={
-                  style.style === "Cosmos"
-                    ? up(`${days} Antennes`)
-                    : up(`${days} jours`)
-                }
+                text={up(
+                  {
+                    Cosmos: `${days} Antennes`,
+                    Z64: `${days} heures`,
+                  }[style.style] ?? `${days} jours`
+                )}
                 x={style.days.left}
                 y={style.days.top}
                 fontFamily={style.card.alternative_font}
@@ -284,7 +295,9 @@ export function Card({
                       ? starnomadImg
                       : style.style === "Road66"
                       ? star66img
-                      : starcosmosImg
+                      : style.style === "Cosmos"
+                      ? starcosmosImg
+                      : star64img
                   }
                   x={
                     style.stars.left +
@@ -315,7 +328,9 @@ export function Card({
                         ? starnomadImg
                         : style.style === "Road66"
                         ? star66img
-                        : starcosmosImg
+                        : style.style === "Cosmos"
+                        ? starcosmosImg
+                        : star64img
                     }
                     x={
                       style.stars.left +
